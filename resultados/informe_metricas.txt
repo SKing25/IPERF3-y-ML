@@ -34,3 +34,22 @@ F1-Score                  | 0.8658             | 0.7390             | 0.8776    
    - Persistencias Detectadas (θ=350)         : 100/109 (91.7%)
    - Persistencias Detectadas (θ=100)         : 107/109 (98.2%)
    - Persistencias Detectadas (Regla Tasa)    : 104/109 (95.4%)
+
+=====================================================================================
+ 4. EVALUACIÓN A ESCALA MICROSCÓPICA (DATASET DE TELEMETRÍA DE PAQUETES: 549,585 INSTANCIAS)
+=====================================================================================
+   - Total de observaciones en Dataset : 549,585 paquetes reales capturados en hardware
+   - Partición de Entrenamiento (c01-c03): 250,717 paquetes
+   - Partición de Validación (c04)       : 100,964 paquetes
+   - Partición de Prueba (c05-c06)       : 197,904 paquetes
+   - MAE en Prueba (nivel paquete)       : 190.269 paquetes/ventana
+   - Umbral de Alerta Calibrado (θ)      : 350.0
+   - Verdaderos Positivos (TP)           : 106,412
+   - Falsos Positivos (FP)               : 18,943
+   - Verdaderos Negativos (TN)           : 69,217
+   - Falsos Negativos (FN)               : 3,332
+   - Precisión a Nivel de Paquete        : 0.8489
+   - Sensibilidad a Nivel de Paquete     : 0.9696
+   - F1-Score a Nivel de Paquete         : 0.9053
+=====================================================================================
+

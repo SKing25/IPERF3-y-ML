@@ -363,7 +363,46 @@ def main():
         f.write(f"   - Total Ventanas Persistencia (dk>0)       : {analisis_ini_opt['total_persistencia']}\n")
         f.write(f"   - Persistencias Detectadas (θ=350)         : {analisis_ini_opt['persistencia_detectada']}/{analisis_ini_opt['total_persistencia']} ({analisis_ini_opt['persistencia_detectada']/analisis_ini_opt['total_persistencia']*100:.1f}%)\n")
         f.write(f"   - Persistencias Detectadas (θ=100)         : {analisis_ini_sens['persistencia_detectada']}/{analisis_ini_sens['total_persistencia']} ({analisis_ini_sens['persistencia_detectada']/analisis_ini_sens['total_persistencia']*100:.1f}%)\n")
-        f.write(f"   - Persistencias Detectadas (Regla Tasa)    : {analisis_ini_base['persistencia_detectada']}/{analisis_ini_base['total_persistencia']} ({analisis_ini_base['persistencia_detectada']/analisis_ini_base['total_persistencia']*100:.1f}%)\n")
+        f.write(f"   - Persistencias Detectadas (Regla Tasa)    : {analisis_ini_base['persistencia_detectada']}/{analisis_ini_base['total_persistencia']} ({analisis_ini_base['persistencia_detectada']/analisis_ini_base['total_persistencia']*100:.1f}%)\n\n")
+
+        # 4. Evaluación en el Dataset a Nivel de Paquete (>100k instancias)
+        datos_dir = os.path.dirname(args.datos)
+        ruta_paquetes = os.path.join(datos_dir, "dataset_completo_paquetes.csv")
+        if os.path.exists(ruta_paquetes):
+            print("\n[*] Evaluando modelo en Dataset a Nivel de Paquetes (N = 549,585 instancias)...")
+            df_paq = pd.read_csv(ruta_paquetes)
+            mask_tr_p = df_paq["corrida"].isin(["c01", "c02", "c03"])
+            mask_val_p = df_paq["corrida"] == "c04"
+            mask_te_p = df_paq["corrida"].isin(["c05", "c06"])
+
+            m_paq = LinearRegression()
+            m_paq.fit(df_paq.loc[mask_tr_p, features], df_paq.loc[mask_tr_p, "yk_target"])
+            
+            y_pred_te_p = np.clip(m_paq.predict(df_paq.loc[mask_te_p, features]), 0, None)
+            y_real_te_p = df_paq.loc[mask_te_p, "yk_target"].values
+            mae_paq = mean_absolute_error(y_real_te_p, y_pred_te_p)
+            
+            y_pred_te_bin_p = (y_pred_te_p >= u_opt).astype(int)
+            y_real_te_bin_p = (y_real_te_p >= 1).astype(int)
+            met_paq = calcular_metricas_clasificacion(y_real_te_bin_p, y_pred_te_bin_p)
+
+            f.write("="*85 + "\n")
+            f.write(f" 4. EVALUACIÓN A ESCALA MICROSCÓPICA (DATASET DE TELEMETRÍA DE PAQUETES: {len(df_paq):,} INSTANCIAS)\n")
+            f.write("="*85 + "\n")
+            f.write(f"   - Total de observaciones en Dataset : {len(df_paq):,} paquetes reales capturados en hardware\n")
+            f.write(f"   - Partición de Entrenamiento (c01-c03): {mask_tr_p.sum():,} paquetes\n")
+            f.write(f"   - Partición de Validación (c04)       : {mask_val_p.sum():,} paquetes\n")
+            f.write(f"   - Partición de Prueba (c05-c06)       : {mask_te_p.sum():,} paquetes\n")
+            f.write(f"   - MAE en Prueba (nivel paquete)       : {mae_paq:.3f} paquetes/ventana\n")
+            f.write(f"   - Umbral de Alerta Calibrado (θ)      : {u_opt:.1f}\n")
+            f.write(f"   - Verdaderos Positivos (TP)           : {met_paq['TP']:,}\n")
+            f.write(f"   - Falsos Positivos (FP)               : {met_paq['FP']:,}\n")
+            f.write(f"   - Verdaderos Negativos (TN)           : {met_paq['TN']:,}\n")
+            f.write(f"   - Falsos Negativos (FN)               : {met_paq['FN']:,}\n")
+            f.write(f"   - Precisión a Nivel de Paquete        : {met_paq['Precision']:.4f}\n")
+            f.write(f"   - Sensibilidad a Nivel de Paquete     : {met_paq['Sensibilidad']:.4f}\n")
+            f.write(f"   - F1-Score a Nivel de Paquete         : {met_paq['F1']:.4f}\n")
+            f.write("="*85 + "\n\n")
 
     print("\n" + open(reporte_txt).read())
 

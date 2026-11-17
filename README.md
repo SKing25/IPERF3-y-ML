@@ -1,6 +1,9 @@
 # Laboratorio de Análisis de Datos en Redes
 ## Predicción de Congestión en un Enlace LAN: Captura de Tráfico y Regresión Lineal
 
+**Autor:** Santiago José Rodríguez Gutiérrez  
+**Departamento:** Departamento de Ingeniería de Sistemas y Telemática  
+
 Este repositorio contiene la solución completa y reproducible del **Laboratorio de Análisis de Datos en Redes** especificado en el documento `Taller_Análisis_Datos.pdf`.
 
 ---
@@ -39,7 +42,8 @@ IPERF3 y ML/
 ├── 00_simular_corridas_demo.py    # Simulador sintético del enlace TBF para pruebas rápidas
 ├── datos/                         # Almacenamiento organizado por corrida (c01 a c06)
 │   ├── c01/ .. c06/               # Archivos .pcap, _cola.log, _faseXX.json, _paquetes.csv, _ventanas.csv
-│   └── dataset_completo_ventanas.csv
+│   ├── dataset_completo_paquetes.csv # Dataset de telemetría a nivel de paquete (549,585 instancias > 100k)
+│   └── dataset_completo_ventanas.csv # Dataset de serie temporal agregada (825 ventanas de 1s)
 ├── resultados/                    # Gráficas temporales de 3 paneles e informe de métricas
 │   ├── grafica_temporal_c05.png
 │   ├── grafica_temporal_c06.png

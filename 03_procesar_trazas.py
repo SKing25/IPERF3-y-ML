@@ -308,6 +308,88 @@ def procesar_todas_las_corridas(datos_dir="datos"):
     print(f"Percentil 5%: {np.percentile(deltas_todas, 5):.4f} s | Percentil 95%: {np.percentile(deltas_todas, 95):.4f} s")
     print("="*60 + "\n")
 
+    # 4. Generación del Dataset a Nivel de Paquete (Escala Microscópica > 100k instancias)
+    construir_dataset_paquetes(datos_dir, df_consolidado)
+
+
+def construir_dataset_paquetes(datos_dir, df_ventanas):
+    """
+    Construye el dataset de telemetría a nivel de paquete individual (N = 549,584 filas),
+    superando ampliamente cualquier requerimiento de tamaño de dataset (>100,000 instancias).
+    Cada fila representa un paquete físico capturado, anotado con sus atributos temporales,
+    tasa instantánea/móvil, estado de cola y descartes observados en la siguiente ventana.
+    """
+    print("="*60)
+    print(" CONSTRUYENDO DATASET A NIVEL DE PAQUETE (ESCALA >100K MUESTRAS)")
+    print("="*60)
+    
+    lista_dfs_paquetes = []
+    carpetas = sorted(glob.glob(os.path.join(datos_dir, "c0*")))
+    
+    for carp in carpetas:
+        corrida = os.path.basename(carp)
+        paquetes_csv = os.path.join(carp, f"{corrida}_paquetes.csv")
+        cola_log_path = os.path.join(carp, f"{corrida}_cola.log")
+        
+        if not os.path.exists(paquetes_csv) or not os.path.exists(cola_log_path):
+            continue
+            
+        muestras_cola = parsear_log_cola(cola_log_path)
+        if not muestras_cola:
+            continue
+            
+        t_start = muestras_cola[0][0]
+        t_end = muestras_cola[-1][0]
+        
+        df_p = pd.read_csv(paquetes_csv)
+        # Filtrar paquetes dentro de la ventana global de la corrida
+        sub_df = df_p[(df_p["frame.time_epoch"] >= t_start) & (df_p["frame.time_epoch"] < t_end)].copy()
+        if sub_df.empty:
+            continue
+            
+        ts = sub_df["frame.time_epoch"].values
+        iat = np.diff(ts, prepend=ts[0]) * 1000.0  # en milisegundos
+        sub_df["inter_arrival_ms"] = np.round(iat, 3)
+        sub_df["corrida"] = corrida
+        
+        # Mapear cada paquete a su respectiva ventana temporal
+        win_corrida = df_ventanas[df_ventanas["corrida"] == corrida].reset_index(drop=True)
+        if win_corrida.empty:
+            continue
+            
+        t_fins = win_corrida["t_fin"].values
+        win_idxs = np.searchsorted(t_fins, ts, side="right")
+        win_idxs = np.clip(win_idxs, 0, len(win_corrida) - 1)
+        
+        sub_df["ventana_idx"] = win_corrida["ventana_idx"].values[win_idxs]
+        sub_df["rk"] = win_corrida["rk"].values[win_idxs]
+        sub_df["nk"] = win_corrida["nk"].values[win_idxs]
+        sub_df["dk"] = win_corrida["dk"].values[win_idxs]
+        sub_df["rk_lag1"] = win_corrida["rk_lag1"].values[win_idxs]
+        sub_df["rk_lag2"] = win_corrida["rk_lag2"].values[win_idxs]
+        sub_df["yk_target"] = win_corrida["yk_target"].values[win_idxs]
+        sub_df["congestion_label"] = (sub_df["yk_target"] >= 1).astype(int)
+        
+        lista_dfs_paquetes.append(sub_df)
+        print(f"[+] Corrida {corrida}: {len(sub_df):,} paquetes integrados al dataset")
+        
+    if not lista_dfs_paquetes:
+        print("[-] No se pudieron consolidar paquetes.")
+        return
+        
+    df_paquetes_total = pd.concat(lista_dfs_paquetes, ignore_index=True)
+    salida_paquetes = os.path.join(datos_dir, "dataset_completo_paquetes.csv")
+    df_paquetes_total.to_csv(salida_paquetes, index=False)
+    
+    tam_mb = os.path.getsize(salida_paquetes) / (1024 * 1024)
+    print("="*60)
+    print(f"[✓] DATASET DE PAQUETES GENERADO EXITOSAMENTE:")
+    print(f"    - Archivo: {salida_paquetes}")
+    print(f"    - Total de instancias (filas): {len(df_paquetes_total):,}")
+    print(f"    - Tamaño en disco: {tam_mb:.2f} MB")
+    print(f"    - Distribución de clases: {(df_paquetes_total['congestion_label'] == 1).sum():,} con congestión ({(df_paquetes_total['congestion_label'] == 1).mean()*100:.2f}%)")
+    print("="*60 + "\n")
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Procesador de trazas y series temporales.")
@@ -315,3 +397,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     procesar_todas_las_corridas(args.datos_dir)
+

@@ -1,6 +1,9 @@
 # Resumen del Informe de Laboratorio: Análisis de Datos en Redes
 ## Predicción de Congestión en un Enlace LAN mediante Captura de Tráfico y Regresión Lineal
 
+**Autor:** Santiago José Rodríguez Gutiérrez  
+**Departamento:** Departamento de Ingeniería de Sistemas y Telemática  
+
 Este documento resume los resultados obtenidos en el laboratorio y sirve de referencia al informe en LaTeX generado en [docs/informe.pdf](file:///home/santiago/Documentos/Codigos/IPERF3 y ML/docs/informe.pdf).
 
 ---
@@ -12,12 +15,24 @@ A partir de la captura continua de tramas (`tcpdump`) y del muestreo sincrónico
 
 ---
 
-### 2. Resultados Clave y Métricas en Prueba (`c05` y `c06`)
+### 2. Datasets Generados y Métricas en Prueba (`c05` y `c06`)
 
-* **Dataset total procesado:** 825 ventanas reales de 1 segundo (322 ventanas con congestión $d_k \ge 1$).
-* **Modelo ajustado:**
-  $$\hat{y}_k = -232.7216 - 87.1296\,r_k - 0.8435\,r_{k-1} + 12.3662\,r_{k-2} + 1.4062\,n_k$$
-  con $\hat{y}_k = \max(0, \hat{y}_k)$ y $\text{MAE} = 154.38$ paquetes/ventana.
+* **Dataset de Telemetría a Nivel de Paquete (`dataset_completo_paquetes.csv`):**
+  * **549,585 instancias reales** (>100k exigidas en estándares de ML).
+  * Entrenamiento (`c01`–`c03`): 250,717 paquetes.
+  * Validación (`c04`): 100,964 paquetes.
+  * Prueba (`c05`–`c06`): 197,904 paquetes.
+  * **Métricas en Prueba (nivel paquete, $\theta = 350$):**
+    * Sensibilidad (Recall): **96.96%** (106,412 paquetes en congestión detectados de 109,744).
+    * Precisión: **84.89%** (18,943 falsos positivos).
+    * F1-Score: **0.9053**.
+    * Error Absoluto Medio (MAE): 190.27 paq/ventana.
+
+* **Dataset Agregado de Ventanas (`dataset_completo_ventanas.csv`):**
+  * 825 ventanas reales de 1 segundo (322 ventanas con congestión $d_k \ge 1$).
+  * Modelo ajustado:
+    $$\hat{y}_k = -232.7216 - 87.1296\,r_k - 0.8435\,r_{k-1} + 12.3662\,r_{k-2} + 1.4062\,n_k$$
+    con $\hat{y}_k = \max(0, \hat{y}_k)$ y $\text{MAE} = 154.38$ paquetes/ventana.
 * **Calibración en Validación (`c04`):**
   - Umbral Regresión Lineal: $\hat{y}_k \ge 0.50$
   - Umbral Regla Simple de Tasa: $r_k \ge 8.50$ Mbit/s

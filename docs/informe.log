@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2026.3.29)  17 NOV 2026 15:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2026.3.29)  17 NOV 2026 18:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -928,17 +928,17 @@ File: lstlang1.sty 2024/09/23 1.10c listings language file
 )
 
 [3]
-<img/captura_host_tc_ping.png, id=204, 754.86015pt x 495.7722pt>
+<img/captura_host_tc_ping.png, id=212, 754.86015pt x 495.7722pt>
 File: img/captura_host_tc_ping.png Graphic file (type png)
 <use img/captura_host_tc_ping.png>
 Package pdftex.def Info: img/captura_host_tc_ping.png  used on input line 118.
 (pdftex.def)             Requested size: 362.77264pt x 238.26297pt.
-<img/captura_vm_ip.png, id=206, 1027.84pt x 578.16pt>
+<img/captura_vm_ip.png, id=214, 1027.84pt x 578.16pt>
 File: img/captura_vm_ip.png Graphic file (type png)
 <use img/captura_vm_ip.png>
 Package pdftex.def Info: img/captura_vm_ip.png  used on input line 126.
 (pdftex.def)             Requested size: 217.66211pt x 122.4317pt.
-<img/captura_vm_servidor.png, id=207, 1027.84pt x 578.16pt>
+<img/captura_vm_servidor.png, id=215, 1027.84pt x 578.16pt>
 File: img/captura_vm_servidor.png Graphic file (type png)
 <use img/captura_vm_servidor.png>
 Package pdftex.def Info: img/captura_vm_servidor.png  used on input line 133.
@@ -947,7 +947,7 @@ Package pdftex.def Info: img/captura_vm_servidor.png  used on input line 133.
 
 [4 <./img/captura_host_tc_ping.png> <./img/captura_vm_ip.png> <./img/captura_vm
 _servidor.png (PNG copy)>]
-<img/captura_ejecucion_corrida.png, id=220, 1027.84pt x 579.16376pt>
+<img/captura_ejecucion_corrida.png, id=230, 1027.84pt x 579.16376pt>
 File: img/captura_ejecucion_corrida.png Graphic file (type png)
 <use img/captura_ejecucion_corrida.png>
 Package pdftex.def Info: img/captura_ejecucion_corrida.png  used on input line 
@@ -955,97 +955,103 @@ Package pdftex.def Info: img/captura_ejecucion_corrida.png  used on input line
 (pdftex.def)             Requested size: 348.26233pt x 196.24142pt.
 
 
-[5 <./img/captura_ejecucion_corrida.png>]
+[5]
 
-[6]
-Underfull \hbox (badness 10000) in paragraph at lines 319--319
+[6 <./img/captura_ejecucion_corrida.png>]
+
+[7]
+Overfull \hbox (13.59425pt too wide) in paragraph at lines 291--305
+ [][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 347--347
 []|\OT1/cmr/m/n/9 (+20) 1. Com-ple-to
  []
 
 
 
-[7]
-LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 355.
-
-
 [8]
-<img/captura_procesar_trazas.png, id=271, 1005.7575pt x 605.26125pt>
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 383.
+
+
+[9]
+<img/captura_procesar_trazas.png, id=289, 1005.7575pt x 605.26125pt>
 File: img/captura_procesar_trazas.png Graphic file (type png)
 <use img/captura_procesar_trazas.png>
-Package pdftex.def Info: img/captura_procesar_trazas.png  used on input line 39
-5.
+Package pdftex.def Info: img/captura_procesar_trazas.png  used on input line 42
+3.
 (pdftex.def)             Requested size: 232.17242pt x 139.7151pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 396--396
+Underfull \hbox (badness 10000) in paragraph at lines 424--424
 []\OT1/cmr/m/n/10 (+20) (a) |Ali-nea-ci^^Son de se-ries tem-po-ra-les
  []
 
-<img/captura_entrenar_evaluar.png, id=272, 616.4631pt x 828.9369pt>
+<img/captura_entrenar_evaluar.png, id=290, 616.4631pt x 828.9369pt>
 File: img/captura_entrenar_evaluar.png Graphic file (type png)
 <use img/captura_entrenar_evaluar.png>
 Package pdftex.def Info: img/captura_entrenar_evaluar.png  used on input line 4
-02.
+30.
 (pdftex.def)             Requested size: 232.17242pt x 312.19131pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 403--403
+Underfull \hbox (badness 10000) in paragraph at lines 431--431
 []\OT1/cmr/m/n/10 (+20) (b) |Ba-rri-dos y ca-li-bra-ci^^Son ac-tua-li-za-da
  []
 
 
 
-[9]
-Underfull \hbox (badness 10000) in paragraph at lines 433--433
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 461--461
 []|\OT1/cmr/m/n/9 (+20) Falsos Po-si-ti-vos
  []
 
 
-Underfull \hbox (badness 1584) in paragraph at lines 433--433
+Underfull \hbox (badness 1584) in paragraph at lines 461--461
 []|\OT1/cmr/m/n/9 (+20) Falsos Ne-ga-ti-vos
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 433--433
+Underfull \hbox (badness 10000) in paragraph at lines 461--461
 []|\OT1/cmr/bx/n/9 (+20) Sensibilidad /
  []
 
 
 
-[10 <./img/captura_procesar_trazas.png> <./img/captura_entrenar_evaluar.png>]
-
-[11]
-<img/grafica_c05.png, id=300, 939.51pt x 794.97pt>
-File: img/grafica_c05.png Graphic file (type png)
-<use img/grafica_c05.png>
-Package pdftex.def Info: img/grafica_c05.png  used on input line 498.
-(pdftex.def)             Requested size: 386.95897pt x 327.4197pt.
-
+[11 <./img/captura_procesar_trazas.png> <./img/captura_entrenar_evaluar.png>]
 
 [12]
-<img/grafica_c06.png, id=312, 939.51pt x 794.97pt>
+
+[13]
+<img/grafica_c05.png, id=332, 939.51pt x 794.97pt>
+File: img/grafica_c05.png Graphic file (type png)
+<use img/grafica_c05.png>
+Package pdftex.def Info: img/grafica_c05.png  used on input line 559.
+(pdftex.def)             Requested size: 386.95897pt x 327.4197pt.
+<img/grafica_c06.png, id=333, 939.51pt x 794.97pt>
 File: img/grafica_c06.png Graphic file (type png)
 <use img/grafica_c06.png>
-Package pdftex.def Info: img/grafica_c06.png  used on input line 505.
+Package pdftex.def Info: img/grafica_c06.png  used on input line 566.
 (pdftex.def)             Requested size: 386.95897pt x 327.4197pt.
 
 
-[13 <./img/grafica_c05.png> <./img/grafica_c06.png>]
-Underfull \hbox (badness 1789) in paragraph at lines 544--544
+[14 <./img/grafica_c05.png>]
+
+[15 <./img/grafica_c06.png>]
+Underfull \hbox (badness 1789) in paragraph at lines 605--605
 []|\OT1/cmr/m/n/9 (+20) Saltos brus-cos (\OT1/cmtt/m/n/9 c05
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 544--544
+Underfull \hbox (badness 10000) in paragraph at lines 605--605
 []|\OT1/cmr/m/n/9 (+20) Rampas gra-dua-les
  []
 
 
 
-[14]
+[16]
 
-[15]
-
-[16] (./informe.aux
+[17] (./informe.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 )
@@ -1054,16 +1060,16 @@ LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `informe.out' has not changed.
-(rerunfilecheck)             Checksum: 0B429C9028204D6E9556FCF973B4AA86;9519.
+(rerunfilecheck)             Checksum: 371544E59F1ECA637D71D3A6262BA4AE;10490.
  ) 
 Here is how much of TeX's memory you used:
- 30044 strings out of 475116
- 554317 string characters out of 5764601
- 1164111 words of memory out of 5000000
- 52267 multiletter control sequences out of 15000+600000
- 580923 words of font info for 217 fonts, out of 8000000 for 9000
+ 30058 strings out of 475116
+ 554518 string characters out of 5764601
+ 1168659 words of memory out of 5000000
+ 52272 multiletter control sequences out of 15000+600000
+ 581001 words of font info for 218 fonts, out of 8000000 for 9000
  40 hyphenation exceptions out of 8191
- 98i,16n,101p,1360b,1214s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 98i,16n,101p,1482b,1214s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb></usr/share/texli
@@ -1093,10 +1099,10 @@ texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/public/amsfonts/cm/cmtt9.pfb>
-Output written on informe.pdf (16 pages, 2342386 bytes).
+Output written on informe.pdf (17 pages, 2350663 bytes).
 PDF statistics:
- 496 PDF objects out of 1000 (max. 8388607)
- 397 compressed objects within 4 object streams
- 103 named destinations out of 1000 (max. 500000)
- 49965 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 519 PDF objects out of 1000 (max. 8388607)
+ 418 compressed objects within 5 object streams
+ 110 named destinations out of 1000 (max. 500000)
+ 49981 words of extra memory for PDF output out of 51595 (max. 10000000)
 

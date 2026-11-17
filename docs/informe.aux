@@ -25,64 +25,70 @@
 \newlabel{sub@fig:captura_vm_servidor}{{c}{4}{Servidor \texttt {iperf3 -s} en ejecución en la VM}{figure.caption.3}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Evidencia experimental de configuración de red, disciplina de cola, conectividad y servidor.}}{4}{figure.caption.3}\protected@file@percent }
 \newlabel{fig:evidencia_config}{{2}{4}{Evidencia experimental de configuración de red, disciplina de cola, conectividad y servidor}{figure.caption.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Diseño de Corridas y Generación de Tráfico}{4}{section.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Perfiles de Carga, Cronograma y Dinámica de Fases}{4}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Diseño de Corridas y Generación de Tráfico}{5}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Perfiles de Carga, Cronograma y Dinámica de Fases}{5}{subsection.3.1}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Cronograma experimental completo de fases, tasas ofrecidas, duraciones y marcas temporales.}}{5}{table.caption.4}\protected@file@percent }
 \newlabel{tab:diseno_corridas}{{1}{5}{Cronograma experimental completo de fases, tasas ofrecidas, duraciones y marcas temporales}{table.caption.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Efecto Experimental de la Pausa Inter-Fase}{5}{subsection.3.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Ejecución sincronizada de corrida experimental en Computador A sobre \texttt  {vboxnet0}.}}{5}{figure.caption.5}\protected@file@percent }
-\newlabel{fig:captura_ejecucion}{{3}{5}{Ejecución sincronizada de corrida experimental en Computador A sobre \texttt {vboxnet0}}{figure.caption.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Verificación Cruzada de Cola e Integridad de Captura}{5}{subsection.3.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Ejecución sincronizada de corrida experimental en Computador A sobre \texttt  {vboxnet0}.}}{6}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:captura_ejecucion}{{3}{6}{Ejecución sincronizada de corrida experimental en Computador A sobre \texttt {vboxnet0}}{figure.caption.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Verificación Cruzada de Cola e Integridad de Captura}{6}{subsection.3.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}Validación de la Contabilidad de Cola TBF}{6}{subsubsection.3.3.1}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Validación de contabilidad de cola (\texttt  {tc} $\DOTSB \sum@ \slimits@ d_k$ vs pérdidas reportadas por \texttt  {iperf3} en B).}}{6}{table.caption.6}\protected@file@percent }
 \newlabel{tab:validacion_descartes}{{2}{6}{Validación de contabilidad de cola (\texttt {tc} $\sum d_k$ vs pérdidas reportadas por \texttt {iperf3} en B)}{table.caption.6}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}Validación Cuantitativa de la Integridad de Captura}{6}{subsubsection.3.3.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Validación de integridad de captura: paquetes capturados ($\DOTSB \sum@ \slimits@ n_k$) vs esperados post-cola.}}{6}{table.caption.7}\protected@file@percent }
-\newlabel{tab:validacion_captura}{{3}{6}{Validación de integridad de captura: paquetes capturados ($\sum n_k$) vs esperados post-cola}{table.caption.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Construcción de la Serie Temporal y Preprocesamiento}{6}{section.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Alineación de Ventanas y Resolución Temporal}{6}{subsection.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Segmentación Rigurosa ante Discontinuidades}{7}{subsection.4.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Resumen del dataset de ventanas reales procesadas.}}{7}{table.caption.8}\protected@file@percent }
-\newlabel{tab:resumen_dataset}{{4}{7}{Resumen del dataset de ventanas reales procesadas}{table.caption.8}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Ajuste del Modelo de Regresión y Diagnóstico Estadístico}{7}{section.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Colinealidad Perfecta entre $r_k$ y $n_k$}{7}{subsection.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Efecto Neto y Estudio de Ablación}{7}{subsection.5.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Estudio de ablación de variables en validación y prueba.}}{7}{table.caption.9}\protected@file@percent }
-\newlabel{tab:ablacion}{{5}{7}{Estudio de ablación de variables en validación y prueba}{table.caption.9}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Comparación con Baselines de Regresión (MAE)}{8}{subsection.5.3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Comparación de MAE entre el modelo ajustado y líneas base en prueba.}}{8}{table.caption.10}\protected@file@percent }
-\newlabel{tab:baselines_mae}{{6}{8}{Comparación de MAE entre el modelo ajustado y líneas base en prueba}{table.caption.10}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Calibración de Umbrales y Evaluación en Prueba}{8}{section.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Barrido Amplio y Afinamiento de Umbrales en Validación (\texttt  {c04})}{8}{subsection.6.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Calibración de umbral de alerta en validación (\texttt  {c04}, 142 ventanas, 68 positivas).}}{9}{table.caption.11}\protected@file@percent }
-\newlabel{tab:barrido_val}{{7}{9}{Calibración de umbral de alerta en validación (\texttt {c04}, 142 ventanas, 68 positivas)}{table.caption.11}{}}
-\newlabel{fig:captura_procesar}{{4a}{10}{Alineación de series temporales (\texttt {03\_procesar\_trazas.py})}{figure.caption.12}{}}
-\newlabel{sub@fig:captura_procesar}{{a}{10}{Alineación de series temporales (\texttt {03\_procesar\_trazas.py})}{figure.caption.12}{}}
-\newlabel{fig:captura_entrenar}{{4b}{10}{Barridos y calibración actualizada (\texttt {04\_entrenar\_evaluar.py})}{figure.caption.12}{}}
-\newlabel{sub@fig:captura_entrenar}{{b}{10}{Barridos y calibración actualizada (\texttt {04\_entrenar\_evaluar.py})}{figure.caption.12}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Evidencia de ejecución del pipeline de procesamiento y modelado estadístico.}}{10}{figure.caption.12}\protected@file@percent }
-\newlabel{fig:captura_metricas}{{4}{10}{Evidencia de ejecución del pipeline de procesamiento y modelado estadístico}{figure.caption.12}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Evaluación en el Conjunto de Prueba (\texttt  {c05} y \texttt  {c06})}{10}{subsection.6.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Matriz de confusión y métricas de clasificación en el conjunto de prueba.}}{10}{table.caption.13}\protected@file@percent }
-\newlabel{tab:metricas_prueba}{{8}{10}{Matriz de confusión y métricas de clasificación en el conjunto de prueba}{table.caption.13}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Distinción entre Inicio y Persistencia}{11}{section.7}\protected@file@percent }
-\newlabel{sec:inicios}{{7}{11}{Distinción entre Inicio y Persistencia}{section.7}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Capacidad de anticipación de inicios y detección de persistencia en prueba.}}{11}{table.caption.14}\protected@file@percent }
-\newlabel{tab:inicios_persistencia}{{9}{11}{Capacidad de anticipación de inicios y detección de persistencia en prueba}{table.caption.14}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Análisis Detallado de los Cuatro Inicios Observados}{11}{subsection.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {8}Gráficas Temporales de Tres Paneles Alineados}{12}{section.8}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Evolución temporal segundo a segundo para la corrida de prueba \texttt  {C05}.}}{13}{figure.caption.15}\protected@file@percent }
-\newlabel{fig:grafica_c05}{{5}{13}{Evolución temporal segundo a segundo para la corrida de prueba \texttt {C05}}{figure.caption.15}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Evolución temporal segundo a segundo para la corrida de prueba \texttt  {C06}.}}{13}{figure.caption.16}\protected@file@percent }
-\newlabel{fig:grafica_c06}{{6}{13}{Evolución temporal segundo a segundo para la corrida de prueba \texttt {C06}}{figure.caption.16}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Análisis de los Paneles}{14}{subsection.8.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {9}Discusión y Respuestas a Preguntas del Taller}{14}{section.9}\protected@file@percent }
-\newlabel{sec:discusion}{{9}{14}{Discusión y Respuestas a Preguntas del Taller}{section.9}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.1}Caso Concreto de Falsa Alarma y Falla de Generalización de Validación}{14}{subsection.9.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.2}Comparación Cuantitativa: Inicios por Saltos Bruscos frente a Rampas Graduales}{14}{subsection.9.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Capacidad de anticipación y falsas alarmas clasificadas por dinámica del inicio.}}{14}{table.caption.17}\protected@file@percent }
-\newlabel{tab:inicios_dinamica}{{10}{14}{Capacidad de anticipación y falsas alarmas clasificadas por dinámica del inicio}{table.caption.17}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.3}Indeterminación Temporal del Primer Descarte Intraintervalo}{15}{subsection.9.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.4}Limitación Física: Desacople de Escalas Temporales y Tiempo de Llenado}{15}{subsection.9.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {10}Conclusiones}{15}{section.10}\protected@file@percent }
-\gdef \@abspage@last{16}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Validación de integridad de captura: paquetes capturados ($\DOTSB \sum@ \slimits@ n_k$) vs esperados post-cola.}}{7}{table.caption.7}\protected@file@percent }
+\newlabel{tab:validacion_captura}{{3}{7}{Validación de integridad de captura: paquetes capturados ($\sum n_k$) vs esperados post-cola}{table.caption.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Construcción de los Datasets: Escalas Microscópica (>100k Paquetes) y Macroscópica (Ventanas)}{7}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Arquitectura Dual de Datos y Volumen Empírico}{7}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Alineación de Ventanas y Resolución Temporal}{7}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Segmentación Rigurosa ante Discontinuidades}{7}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Resumen del dataset de ventanas reales procesadas (Escala Macroscópica, $N = 825$).}}{8}{table.caption.8}\protected@file@percent }
+\newlabel{tab:resumen_dataset}{{4}{8}{Resumen del dataset de ventanas reales procesadas (Escala Macroscópica, $N = 825$)}{table.caption.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Resumen del dataset de telemetría a nivel de paquete (Escala Microscópica, $N = 549,585$).}}{8}{table.caption.9}\protected@file@percent }
+\newlabel{tab:resumen_paquetes}{{5}{8}{Resumen del dataset de telemetría a nivel de paquete (Escala Microscópica, $N = 549,585$)}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Ajuste del Modelo de Regresión y Diagnóstico Estadístico}{8}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Colinealidad Perfecta entre $r_k$ y $n_k$}{8}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Efecto Neto y Estudio de Ablación}{8}{subsection.5.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Estudio de ablación de variables en validación y prueba.}}{9}{table.caption.10}\protected@file@percent }
+\newlabel{tab:ablacion}{{6}{9}{Estudio de ablación de variables en validación y prueba}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Comparación con Baselines de Regresión (MAE)}{9}{subsection.5.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Comparación de MAE entre el modelo ajustado y líneas base en prueba.}}{9}{table.caption.11}\protected@file@percent }
+\newlabel{tab:baselines_mae}{{7}{9}{Comparación de MAE entre el modelo ajustado y líneas base en prueba}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Calibración de Umbrales y Evaluación en Prueba}{9}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Barrido Amplio y Afinamiento de Umbrales en Validación (\texttt  {c04})}{9}{subsection.6.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Calibración de umbral de alerta en validación (\texttt  {c04}, 142 ventanas, 68 positivas).}}{10}{table.caption.12}\protected@file@percent }
+\newlabel{tab:barrido_val}{{8}{10}{Calibración de umbral de alerta en validación (\texttt {c04}, 142 ventanas, 68 positivas)}{table.caption.12}{}}
+\newlabel{fig:captura_procesar}{{4a}{11}{Alineación de series temporales (\texttt {03\_procesar\_trazas.py})}{figure.caption.13}{}}
+\newlabel{sub@fig:captura_procesar}{{a}{11}{Alineación de series temporales (\texttt {03\_procesar\_trazas.py})}{figure.caption.13}{}}
+\newlabel{fig:captura_entrenar}{{4b}{11}{Barridos y calibración actualizada (\texttt {04\_entrenar\_evaluar.py})}{figure.caption.13}{}}
+\newlabel{sub@fig:captura_entrenar}{{b}{11}{Barridos y calibración actualizada (\texttt {04\_entrenar\_evaluar.py})}{figure.caption.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Evidencia de ejecución del pipeline de procesamiento y modelado estadístico.}}{11}{figure.caption.13}\protected@file@percent }
+\newlabel{fig:captura_metricas}{{4}{11}{Evidencia de ejecución del pipeline de procesamiento y modelado estadístico}{figure.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Evaluación en el Conjunto de Prueba (\texttt  {c05} y \texttt  {c06})}{11}{subsection.6.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Matriz de confusión y métricas de clasificación en el conjunto de prueba.}}{11}{table.caption.14}\protected@file@percent }
+\newlabel{tab:metricas_prueba}{{9}{11}{Matriz de confusión y métricas de clasificación en el conjunto de prueba}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Evaluación a Escala Microscópica: Dataset de Paquetes ($N = 549,585$)}{12}{subsection.6.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Métricas de clasificación en el conjunto de prueba a nivel de paquetes ($N_{\text  {prueba}} = 197,904$).}}{12}{table.caption.15}\protected@file@percent }
+\newlabel{tab:metricas_paquetes}{{10}{12}{Métricas de clasificación en el conjunto de prueba a nivel de paquetes ($N_{\text {prueba}} = 197,904$)}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Distinción entre Inicio y Persistencia}{12}{section.7}\protected@file@percent }
+\newlabel{sec:inicios}{{7}{12}{Distinción entre Inicio y Persistencia}{section.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Capacidad de anticipación de inicios y detección de persistencia en prueba.}}{12}{table.caption.16}\protected@file@percent }
+\newlabel{tab:inicios_persistencia}{{11}{12}{Capacidad de anticipación de inicios y detección de persistencia en prueba}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Análisis Detallado de los Cuatro Inicios Observados}{13}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Gráficas Temporales de Tres Paneles Alineados}{13}{section.8}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Evolución temporal segundo a segundo para la corrida de prueba \texttt  {C05}.}}{14}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:grafica_c05}{{5}{14}{Evolución temporal segundo a segundo para la corrida de prueba \texttt {C05}}{figure.caption.17}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Evolución temporal segundo a segundo para la corrida de prueba \texttt  {C06}.}}{15}{figure.caption.18}\protected@file@percent }
+\newlabel{fig:grafica_c06}{{6}{15}{Evolución temporal segundo a segundo para la corrida de prueba \texttt {C06}}{figure.caption.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Análisis de los Paneles}{15}{subsection.8.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9}Discusión y Respuestas a Preguntas del Taller}{15}{section.9}\protected@file@percent }
+\newlabel{sec:discusion}{{9}{15}{Discusión y Respuestas a Preguntas del Taller}{section.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.1}Caso Concreto de Falsa Alarma y Falla de Generalización de Validación}{15}{subsection.9.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.2}Comparación Cuantitativa: Inicios por Saltos Bruscos frente a Rampas Graduales}{16}{subsection.9.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Capacidad de anticipación y falsas alarmas clasificadas por dinámica del inicio.}}{16}{table.caption.19}\protected@file@percent }
+\newlabel{tab:inicios_dinamica}{{12}{16}{Capacidad de anticipación y falsas alarmas clasificadas por dinámica del inicio}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3}Indeterminación Temporal del Primer Descarte Intraintervalo}{16}{subsection.9.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.4}Limitación Física: Desacople de Escalas Temporales y Tiempo de Llenado}{16}{subsection.9.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {10}Conclusiones}{17}{section.10}\protected@file@percent }
+\gdef \@abspage@last{17}

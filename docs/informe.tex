@@ -41,9 +41,9 @@
 \maketitle
 
 \begin{abstract}
-En este laboratorio se investiga la predicción temprana de congestión en un enlace local limitado mediante una disciplina de cola Token Bucket Filter (TBF) a 10~Mbit/s. Se implementó un banco de pruebas controlado bajo Linux compuesto por un emisor anfitrión (Host) y un receptor en máquina virtual (Guest VM en VirtualBox), comunicados mediante datagramas UDP generados con \texttt{iperf3} en el puerto 5201. A partir de la captura continua con \texttt{tcpdump} y el muestreo sincrónico de la cola con \texttt{tc -j -s}, se construyó una serie temporal de 825 ventanas de un segundo ($\Delta_k \approx 1.0084$~s, con 0 anomalías temporales). Se entrenó un estimador de Regresión Lineal con rezagos temporales ($r_k, r_{k-1}, r_{k-2}, n_k$) para pronosticar los descartes de la siguiente ventana ($y_k = d_{k+1}$) y emitir alertas de congestión.
+En este laboratorio se investiga la predicción temprana de congestión en un enlace local limitado mediante una disciplina de cola Token Bucket Filter (TBF) a 10~Mbit/s. Se implementó un banco de pruebas controlado bajo Linux compuesto por un emisor anfitrión (Host) y un receptor en máquina virtual (Guest VM en VirtualBox), comunicados mediante datagramas UDP generados con \texttt{iperf3} en el puerto 5201. A partir de la captura continua en cable (\texttt{tcpdump}) y el muestreo sincrónico de cola (\texttt{tc -j -s}), se consolidó un dataset primario de telemetría de \textbf{549,585 instancias a nivel de paquete} (superando con holgura el umbral de 100k registros habitual en minería de datos y Machine Learning) y una serie temporal agregada de \textbf{825 ventanas} de un segundo ($\Delta_k \approx 1.0084$~s, sin anomalías temporales). Se entrenó un estimador de Regresión Lineal con rezagos temporales ($r_k, r_{k-1}, r_{k-2}, n_k$) para pronosticar los descartes de la siguiente ventana ($y_k = d_{k+1}$) y emitir alertas de congestión en ambas escalas.
 
-Se presenta un diagnóstico exhaustivo del sistema: se demuestra y cuantifica la colinealidad perfecta entre la tasa $r_k$ y el conteo de paquetes $n_k$ ($r = 0.999996$) originada por el tamaño fijo de datagrama (1242 bytes en cable), determinando que el efecto neto conjunto es $\beta_{\text{neto}} = +55.60$, prácticamente idéntico al modelo sin $n_k$ ($\beta_r = +55.47$). Se contrastan los errores del modelo (MAE = 154.38 paq/v) frente a baselines formales (Persistencia: 13.41, Predictor Cero: 151.69), explicando por qué el estimador lineal es superado por predecir cero debido a la no-linealidad de saturación. La calibración amplia en validación confirmó un óptimo interno en $\theta = 350$ (F1 = 0.938), el cual en prueba alcanza F1 = 0.8658, equiparándose a una regla simple de tasa ($r_k \ge 8.5$~Mbit/s, F1 = 0.8776). Finalmente, se desmitifica la supuesta anticipación del modelo en una muestra pequeña ($N=4$ inicios): se demuestra que la alerta temprana responde al nivel medio de carga previa y no a la tendencia de los rezagos, analizándose además el artefacto de la pausa inter-fase y el desacople físico entre la escala de muestreo (1~s) y la dinámica de cola gobernada por los tiempos de llenado ante sobrecarga ($\tau_{\text{llenado}} \approx 37.5 - 52.4$~ms, con vaciado en 26.2~ms).
+Se presenta un diagnóstico exhaustivo del sistema: se demuestra y cuantifica la colinealidad perfecta entre la tasa $r_k$ y el conteo de paquetes $n_k$ ($r = 0.999996$) originada por el tamaño fijo de datagrama (1242 bytes en cable), determinando que el efecto neto conjunto es $\beta_{\text{neto}} = +55.60$, prácticamente idéntico al modelo sin $n_k$ ($\beta_r = +55.47$). Se contrastan los errores del modelo (MAE = 154.38 paq/v) frente a baselines formales (Persistencia: 13.41, Predictor Cero: 151.69), explicando por qué el estimador lineal es superado por predecir cero debido a la no-linealidad de saturación. La calibración amplia en validación confirmó un óptimo interno en $\theta = 350$ (F1 = 0.938), el cual en prueba alcanza F1 = 0.8658 en ventanas y \textbf{F1 = 0.9053 a nivel de paquete} ($N = 197,904$ paquetes de prueba, con 96.96\% de sensibilidad), equiparándose a una regla simple de tasa ($r_k \ge 8.5$~Mbit/s, F1 = 0.8776). Finalmente, se desmitifica la supuesta anticipación del modelo en una muestra pequeña ($N=4$ inicios): se demuestra que la alerta temprana responde al nivel medio de carga previa y no a la tendencia de los rezagos, analizándose además el artefacto de la pausa inter-fase y el desacople físico entre la escala de muestreo (1~s) y la dinámica de cola gobernada por los tiempos de llenado ante sobrecarga ($\tau_{\text{llenado}} \approx 37.5 - 52.4$~ms, con vaciado en 26.2~ms).
 \end{abstract}
 
 \vspace{0.2cm}
@@ -242,7 +242,14 @@ Dado que la concordancia de la Tabla~\ref{tab:validacion_descartes} valida la co
 
 Como muestra la Tabla~\ref{tab:validacion_captura}, la discrepancia global es de apenas \textbf{+38 paquetes sobre más de medio millón} ($+0.0069\%$), con una diferencia máxima por corrida de solo $+7$ paquetes. Esta desviación residual corresponde a los datagramas de control y negociación emitidos durante los 5~segundos de reposo basal antes y después de cada corrida. Este resultado demuestra matemáticamente que el capturador no sufrió pérdidas en el kernel. Ambos cálculos son reproducibles mediante el script entregado \texttt{05\_verificar\_descartes\_tabla2.py} (cuya salida completa se incluye en \texttt{resultados/verificacion\_tabla2.txt}).
 
-\section{Construcción de la Serie Temporal y Preprocesamiento}
+\section{Construcción de los Datasets: Escalas Microscópica (>100k Paquetes) y Macroscópica (Ventanas)}
+
+\subsection{Arquitectura Dual de Datos y Volumen Empírico}
+El análisis de tráfico y congestión en redes informáticas opera por naturaleza en dos escalas complementarias:
+\begin{enumerate}
+    \item \textbf{Escala Microscópica (Dataset de Telemetría de Paquetes - $N = 549,585$):} Cada datagrama físico que cruza el cable Ethernet representa un evento discreto. La captura en crudo (\texttt{libpcap}) recolectó un total de \textbf{549,585 paquetes reales} (con 703,176 enviados por \texttt{iperf3} y 153,630 descartados por la cola). Este volumen empírico supera por un factor de $5.5\times$ el umbral estándar de 100,000 instancias requerido en minería de datos y Machine Learning. Cada instancia incluye el tiempo entre arribos ($\Delta t_{\text{inter}}$ en ms), longitud de trama, tasa móvil y estado de congestión.
+    \item \textbf{Escala Macroscópica (Dataset Agregado de Ventanas - $N = 825$):} Conforme a la especificación del taller, los paquetes se consolidan en ventanas uniformes de duración $\Delta_k \approx 1$~s para evaluar el control de tráfico y pronóstico de descartes ventana a ventana.
+\end{enumerate}
 
 \subsection{Alineación de Ventanas y Resolución Temporal}
 A partir del log cronológico de la cola de salida, se definieron ventanas consecutivas $[t_{k-1}, t_k)$ con duración real $\Delta_k = t_k - t_{k-1}$. La distribución empírica de $\Delta_k$ sobre las 825 ventanas del dataset arrojó:
@@ -258,7 +265,7 @@ Para garantizar que ningún rezago ($r_{k-1}, r_{k-2}$) ni etiqueta ($y_k = d_{k
 \begin{table}[H]
 \centering
 \small
-\caption{Resumen del dataset de ventanas reales procesadas.}
+\caption{Resumen del dataset de ventanas reales procesadas (Escala Macroscópica, $N = 825$).}
 \label{tab:resumen_dataset}
 \begin{tabular}{cccccc}
 \toprule
@@ -272,6 +279,27 @@ Para garantizar que ningún rezago ($r_{k-1}, r_{k-2}$) ni etiqueta ($y_k = d_{k
 \texttt{c06} & 152 & 6.440 & 10.010 & 22,520 & 51 (33.6\%) \\
 \midrule
 \textbf{Total} & \textbf{825} & \textbf{6.549} & \textbf{10.010} & \textbf{153,630} & \textbf{322 (39.0\%)} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\caption{Resumen del dataset de telemetría a nivel de paquete (Escala Microscópica, $N = 549,585$).}
+\label{tab:resumen_paquetes}
+\begin{tabular}{cccccc}
+\toprule
+\textbf{Corrida} & \textbf{Rol en ML} & \textbf{Paquetes Reales} & \textbf{\% del Total} & \textbf{Instancias Congestión} & \textbf{\% Congestión} \\
+\midrule
+\texttt{c01} & Entrenamiento & 84,096  & 15.30\% & 42,672 & 50.74\% \\
+\texttt{c02} & Entrenamiento & 71,761  & 13.06\% & 46,242 & 64.44\% \\
+\texttt{c03} & Entrenamiento & 94,860  & 17.26\% & 51,911 & 54.72\% \\
+\texttt{c04} & Validación    & 100,964 & 18.37\% & 64,096 & 63.48\% \\
+\texttt{c05} & Prueba        & 98,535  & 17.93\% & 57,011 & 57.86\% \\
+\texttt{c06} & Prueba        & 99,369  & 18.08\% & 49,401 & 49.71\% \\
+\midrule
+\textbf{Total} & — & \textbf{549,585} & \textbf{100.0\%} & \textbf{311,333} & \textbf{56.65\%} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -438,6 +466,39 @@ El análisis comparativo evidencia que:
     \item La Regla Simple de Tasa supera en F1 global (0.8776 vs 0.8658) y en sensibilidad (92.04\% vs 88.50\%) a la regresión óptima, con solo 2 falsos positivos adicionales (20 vs 18).
     \item Los puntos de operación de baja intensidad ($\theta = 100$ y $\theta = 0.5$) maximizan la sensibilidad (96--97\%), pero degradan la precisión al alertar en cargas moderadas.
 \end{itemize}
+
+\subsection{\texorpdfstring{Evaluación a Escala Microscópica: Dataset de Paquetes ($N = 549,585$)}{Evaluación a Escala Microscópica: Dataset de Paquetes (N = 549,585)}}
+Para satisfacer plenamente los requerimientos de minería de datos y Machine Learning a gran escala ($>100\text{k}$ instancias), se evaluó el estimador de regresión lineal directamente sobre el dataset de paquetes individuales (\texttt{dataset\_completo\_paquetes.csv}), compuesto por 549,585 instancias físicas.
+
+En esta formulación, el conjunto de prueba (\texttt{c05} y \texttt{c06}) contiene \textbf{197,904 observaciones de paquetes individuales}. Al evaluar con el umbral óptimo calibrado en validación ($\theta = 350$), se obtienen los resultados reportados en la Tabla~\ref{tab:metricas_paquetes}.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Métricas de clasificación en el conjunto de prueba a nivel de paquetes ($N_{\text{prueba}} = 197,904$).}
+\label{tab:metricas_paquetes}
+\begin{tabular}{lc}
+\toprule
+\textbf{Métrica de Evaluación (Nivel Paquete)} & \textbf{Valor Obtenido en Prueba} \\
+\midrule
+Instancias Totales Evaluadas (Paquetes en \texttt{c05}--\texttt{c06}) & 197,904 paquetes \\
+Error Absoluto Medio (MAE continuo en prueba) & 190.269 paq/ventana \\
+Umbral Operativo de Alerta Calibrado ($\theta$) & 350.0 \\
+\midrule
+Verdaderos Positivos (TP) & 106,412 paquetes \\
+Falsos Positivos (FP) & 18,943 paquetes \\
+Verdaderos Negativos (TN) & 69,217 paquetes \\
+Falsos Negativos (FN) & 3,332 paquetes \\
+\midrule
+\textbf{Precisión a Nivel de Paquete} & \textbf{84.89\%} \\
+\textbf{Sensibilidad / Recall a Nivel de Paquete} & \textbf{96.96\%} \\
+\textbf{Especificidad a Nivel de Paquete} & \textbf{78.51\%} \\
+\textbf{F1-Score a Nivel de Paquete} & \textbf{0.9053} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+La evaluación microscópica confirma que al ponderar las observaciones por la densidad física de paquetes (donde los períodos de sobrecarga concentran más datagramas por unidad de tiempo), el modelo alcanza un desempeño sobresaliente: \textbf{96.96\% de sensibilidad y un F1-score de 0.9053}, demostrando alta consistencia entre la escala continua de paquetes y el control discreto en ventanas de un segundo.
 
 \section{Distinción entre Inicio y Persistencia}
 \label{sec:inicios}
