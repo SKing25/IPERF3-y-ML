@@ -1,0 +1,7 @@
+Corrida: c02
+Fase,Nombre,Tasa_Mbps,Duracion_s,Timestamp_Inicio,Proposito
+fase01,Base,4,20,1794793550.354,Carga baja inicial
+fase02,Salto_Brusco_1,15,25,1794793571.368,Salto brusco a sobrecarga
+fase03,Recuperacion,4,20,1794793597.402,Retorno a la normalidad
+fase04,Salto_Brusco_2,16,25,1794793618.411,Segundo salto brusco a sobrecarga
+fase05,Fin,3,15,1794793644.445,Reposo

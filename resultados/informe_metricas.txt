@@ -1,0 +1,36 @@
+=====================================================================================
+ EVALUACIÓN RIGUROSA EN EL CONJUNTO DE PRUEBA (c05 y c06 - 299 ventanas, 113 congestionadas)
+=====================================================================================
+
+1. COMPARACIÓN DE MODELOS Y BASELINES:
+   - Predictor Persistencia (y_hat = d_k)   : MAE = 13.411 paq/ventana (Cota teórica con telemetría de cola)
+   - Predictor Constante Cero (y_hat = 0)   : MAE = 151.689 paq/ventana
+   - Modelo Regresión Lineal Completo       : MAE = 154.383 paq/ventana (Peor que predecir cero por saturación)
+   - Modelo Regresión Sin n_k               : MAE = 154.492 paq/ventana
+   - Modelo Regresión Solo r_k              : MAE = 155.954 paq/ventana
+   - Predictor Media de Train               : MAE = 230.512 paq/ventana
+
+2. COMPARACIÓN DE CLASIFICACIÓN DE ALERTAS EN PRUEBA:
+Métrica                   | Regresión (θ=350)  | Regresión (θ=100)  | Regla Tasa (8.5M)  | Regresión (θ=0.5) 
+---------------------------------------------------------------------------------------------------------
+Propósito del punto       | Óptimo F1 (Val)    | Sensible / Anticip | Línea base reactiva | Extremo sensible  
+Umbral utilizado          | 350.0              | 100.0              | 8.5                | 0.5               
+Verdaderos Positivos      | 100                | 109                | 104                | 110               
+Falsos Positivos          | 18                 | 73                 | 20                 | 135               
+Verdaderos Negativos      | 168                | 113                | 166                | 51                
+Falsos Negativos          | 13                 | 4                  | 9                  | 3                 
+Precisión                 | 0.8475             | 0.5989             | 0.8387             | 0.4490            
+Sensibilidad (Recall)     | 0.8850             | 0.9646             | 0.9204             | 0.9735            
+Especificidad             | 0.9032             | 0.6075             | 0.8925             | 0.2742            
+F1-Score                  | 0.8658             | 0.7390             | 0.8776             | 0.6145            
+
+3. DISTINCIÓN INICIO Y PERSISTENCIA (N = 4 inicios observados en prueba):
+   - Total Inicios Observados (dk=0 y dk+1>0) : 4
+   - Inicios Anticipados (Regresión θ=350)    : 0/4 (0.0%)
+   - Inicios Anticipados (Regresión θ=100)    : 2/4 (50.0%)
+   - Inicios Anticipados (Regla Simple Tasa)  : 0/4 (0.0%)
+   - Inicios Anticipados (Regresión θ=0.5)    : 2/4 (50.0%)
+   - Total Ventanas Persistencia (dk>0)       : 109
+   - Persistencias Detectadas (θ=350)         : 100/109 (91.7%)
+   - Persistencias Detectadas (θ=100)         : 107/109 (98.2%)
+   - Persistencias Detectadas (Regla Tasa)    : 104/109 (95.4%)

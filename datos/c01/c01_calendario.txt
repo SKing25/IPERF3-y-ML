@@ -1,0 +1,8 @@
+Corrida: c01
+Fase,Nombre,Tasa_Mbps,Duracion_s,Timestamp_Inicio,Proposito
+fase01,Base,4,20,1794793410.034,Medir con carga baja
+fase02,Ascenso,8,20,1794793431.053,Aproximarse al límite
+fase03,Sobrecarga,14,20,1794793452.066,Provocar descartes
+fase04,Recuperacion,5,20,1794793473.103,Fin del primer episodio
+fase05,Sobrecarga_2,16,20,1794793494.113,Segundo episodio severo
+fase06,Fin,4,20,1794793515.149,Estabilización final

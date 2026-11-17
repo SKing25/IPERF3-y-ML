@@ -1,0 +1,9 @@
+Corrida: c05
+Fase,Nombre,Tasa_Mbps,Duracion_s,Timestamp_Inicio,Proposito
+fase01,Base,4,20,1794793972.242,Base (Prueba 1)
+fase02,Salto_Brusco,14,25,1794793993.253,Salto repentino
+fase03,Recuperacion,5,20,1794794019.290,Recuperación
+fase04,Rampa_1,7,15,1794794040.304,Rampa escalonada 1
+fase05,Rampa_2,10,15,1794794056.316,Rampa escalonada 2 (al límite)
+fase06,Rampa_Sobrecarga,15,20,1794794072.353,Culminación rampa sobrecarga
+fase07,Fin,4,20,1794794093.389,Fin

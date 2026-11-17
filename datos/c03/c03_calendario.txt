@@ -1,0 +1,9 @@
+Corrida: c03
+Fase,Nombre,Tasa_Mbps,Duracion_s,Timestamp_Inicio,Proposito
+fase01,Base,5,15,1794793674.610,Medir línea base
+fase02,Rampa_1,7,15,1794793690.619,Ascenso progresivo nivel 1
+fase03,Rampa_2,9,15,1794793706.631,Ascenso progresivo nivel 2
+fase04,Sobrecarga,13,25,1794793722.646,Sobrecarga sostenida
+fase05,Recuperacion,5,20,1794793748.683,Descenso
+fase06,Sobrecarga_Pico,17,20,1794793769.694,Pico máximo de sobrecarga
+fase07,Fin,4,15,1794793790.737,Cierre

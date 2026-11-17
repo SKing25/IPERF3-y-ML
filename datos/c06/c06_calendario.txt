@@ -1,0 +1,9 @@
+Corrida: c06
+Fase,Nombre,Tasa_Mbps,Duracion_s,Timestamp_Inicio,Proposito
+fase01,Base,3,15,1794794128.594,Base (Prueba 2)
+fase02,Rampa_Suave_1,6,20,1794794144.607,Rampa suave
+fase03,Rampa_Suave_2,9,20,1794794165.619,Cerca del límite de 10 Mbit/s
+fase04,Sobrecarga_Frontera,11,25,1794794186.629,Descartes moderados frontera
+fase05,Recuperacion,4,20,1794794212.664,Recuperación intermedia
+fase06,Sobrecarga_Severa,17,25,1794794233.675,Descartes masivos
+fase07,Fin,3,15,1794794259.712,Reposo final

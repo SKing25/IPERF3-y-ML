@@ -1,0 +1,9 @@
+Corrida: c04
+Fase,Nombre,Tasa_Mbps,Duracion_s,Timestamp_Inicio,Proposito
+fase01,Base,4,15,1794793820.914,Base (Validación)
+fase02,Rampa,8,15,1794793836.923,Aproximación gradual
+fase03,Sobrecarga_Mod,12,20,1794793852.943,Sobrecarga moderada
+fase04,Sobrecarga_Fuerte,16,20,1794793873.979,Sobrecarga fuerte
+fase05,Recuperacion,5,20,1794793895.015,Recuperación
+fase06,Salto_Brusco,15,25,1794793916.024,Salto brusco
+fase07,Fin,4,15,1794793942.063,Estabilización

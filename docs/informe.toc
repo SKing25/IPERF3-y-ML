@@ -1,0 +1,32 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\numberline {1}Introducción y Objetivos}{2}{section.1}%
+\contentsline {section}{\numberline {2}Topología y Montaje Experimental}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Arquitectura del Sistema y Justificación del Enlace}{3}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Justificación de la Interfaz Virtual (\texttt {vboxnet0})}{3}{subsubsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.2}Configuración de Cola TBF, Firewall y Estado de Red}{3}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Diseño de Corridas y Generación de Tráfico}{4}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Perfiles de Carga, Cronograma y Dinámica de Fases}{4}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Efecto Experimental de la Pausa Inter-Fase}{5}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Verificación Cruzada de Cola e Integridad de Captura}{5}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Validación de la Contabilidad de Cola TBF}{6}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Validación Cuantitativa de la Integridad de Captura}{6}{subsubsection.3.3.2}%
+\contentsline {section}{\numberline {4}Construcción de la Serie Temporal y Preprocesamiento}{6}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Alineación de Ventanas y Resolución Temporal}{6}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Segmentación Rigurosa ante Discontinuidades}{7}{subsection.4.2}%
+\contentsline {section}{\numberline {5}Ajuste del Modelo de Regresión y Diagnóstico Estadístico}{7}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Colinealidad Perfecta entre $r_k$ y $n_k$}{7}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Efecto Neto y Estudio de Ablación}{7}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Comparación con Baselines de Regresión (MAE)}{8}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Calibración de Umbrales y Evaluación en Prueba}{8}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Barrido Amplio y Afinamiento de Umbrales en Validación (\texttt {c04})}{8}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Evaluación en el Conjunto de Prueba (\texttt {c05} y \texttt {c06})}{10}{subsection.6.2}%
+\contentsline {section}{\numberline {7}Distinción entre Inicio y Persistencia}{11}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Análisis Detallado de los Cuatro Inicios Observados}{11}{subsection.7.1}%
+\contentsline {section}{\numberline {8}Gráficas Temporales de Tres Paneles Alineados}{12}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Análisis de los Paneles}{14}{subsection.8.1}%
+\contentsline {section}{\numberline {9}Discusión y Respuestas a Preguntas del Taller}{14}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Caso Concreto de Falsa Alarma y Falla de Generalización de Validación}{14}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Comparación Cuantitativa: Inicios por Saltos Bruscos frente a Rampas Graduales}{14}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}Indeterminación Temporal del Primer Descarte Intraintervalo}{15}{subsection.9.3}%
+\contentsline {subsection}{\numberline {9.4}Limitación Física: Desacople de Escalas Temporales y Tiempo de Llenado}{15}{subsection.9.4}%
+\contentsline {section}{\numberline {10}Conclusiones}{15}{section.10}%
